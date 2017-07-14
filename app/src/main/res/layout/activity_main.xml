@@ -1,66 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
     <!--一个增强的FrameLayout 可以监听其所有子控件的各种事件，让后在布局上作出最合理的响应-->
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <!-- app:layout_behavior="@string/appbar_scrolling_view_behavior" Toolbar 不被遮挡-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
-            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Dark" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <RelativeLayout
+                android:id="@+id/rl_beforeLogin"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btn_login"
+                    android:layout_centerHorizontal="true"
+                    android:text="登录更好体验随心记" />
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点击登录"
+                    android:textColor="@color/colorTextNormal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_afterLogin"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorHomeOrigin"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="70dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_icon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/icon_pen" />
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="telyo"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tv_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:text="天下之事有难易者乎？" />
+
+                <TextView
+                    android:id="@+id/tv_leastJob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rectangle_bg"
+                    android:padding="5dp"
+                    android:text="最近的安排" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/tv_jobName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/job"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:text="遛狗" />
+
+
+                    <TextView
+                        android:gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="倒计时:  "
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_lastTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/music"
+                        android:drawablePadding="10dp"
+                        android:text="1:30:59"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:gravity="center"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <com.telyo.finemoodnote.views.HomeGideView
+                android:id="@+id/home_memo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="6dp">
+                android:background="@drawable/home_click_bg"
+                app:card_radius="6"
+                app:content_text="least job is"
+                app:img_border_color="@color/colorHomeOrigin"
+                app:img_src="@drawable/jobs"
+                app:title_text="jobs" />
 
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+            <com.telyo.finemoodnote.views.HomeGideView
+                android:id="@+id/home_plan"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_click_bg"
+                app:card_radius="6"
+                app:content_text="查看工作时间轴"
+                app:img_src="@drawable/works_plan"
+                app:title_text="我的工作计划" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@mipmap/ic_launcher"/>
-                    <LinearLayout
-                        android:padding="10dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
-                        <TextView
-                            android:textColor="@android:color/black"
-                            android:text="Jobs"
-                            android:id="@+id/tv_jobs"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:text="the least job is"
-                            android:id="@+id/tv_least_job"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+            <com.telyo.finemoodnote.views.HomeGideView
+                android:id="@+id/home_contact"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_click_bg"
+                app:card_radius="6"
+                app:content_text="轻松分类管理"
+                app:img_src="@drawable/content_manager"
+                app:title_text="需要管理的联系人" />
 
-
+            <com.telyo.finemoodnote.views.HomeGideView
+                android:id="@+id/home_message"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_click_bg"
+                app:card_radius="6"
+                app:content_text="短信转发"
+                app:img_border_color="@color/colorHomeOrigin"
+                app:img_src="@drawable/message"
+                app:title_text="信息管理" />
         </LinearLayout>
-    </android.support.design.widget.CoordinatorLayout>
-</LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

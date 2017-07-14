@@ -17,6 +17,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--登录界面-->
+        <activity android:name=".ui.LoginActivity"
+            android:label="@string/login"/>
+        <!--计划-->
+        <activity android:name=".ui.PlanActivity"
+            android:label="@string/plan"/>
+        <!--备忘录-->
+        <activity android:name=".ui.MemoActivity"
+            android:label="@string/memo"/>
+        <!--客户管理-->
+        <activity android:name=".ui.ContactsActivity"
+            android:label="@string/custom_manager"/>
+        <!--短信管理 （后期要修改）-->
+        <activity android:name=".ui.MessageActivity"
+            android:label="信息管理"/>
     </application>
 
 </manifest>
