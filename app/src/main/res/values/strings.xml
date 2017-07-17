@@ -6,4 +6,8 @@
     <string name="plan">计划</string>
     <string name="memo">备忘录</string>
     <string name="custom_manager">客户管理</string>
+    <string name="new_plan">-点击添加新的计划-</string>
+    <string name="describe_the_plan">添加计划条目</string>
+    <string name="unfinished">未完成</string>
+    <string name="finished">完成</string>
 </resources>

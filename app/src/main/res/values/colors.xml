@@ -7,4 +7,5 @@
     <color name="colorTextNormal">#757575</color>
     <color name="colorHomeOrigin">#03BCD8</color>
     <color name="colorHomePress">#03BCD8</color>
+    <color name="colorHalfTransparent">#e0000000</color>
 </resources>
