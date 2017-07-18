@@ -33,6 +33,12 @@
         <!--短信管理 （后期要修改）-->
         <activity android:name=".ui.MessageActivity"
             android:label="信息管理"/>
+        <!--日期选择-->
+        <activity android:name=".ui.DatePickerActivity"
+            android:label="@string/date_picker"/>
+        <!--添加新计划-->
+        <activity android:name=".ui.NewPlanActivity"
+            android:label="@string/a_new_plan"/>
     </application>
 
 </manifest>

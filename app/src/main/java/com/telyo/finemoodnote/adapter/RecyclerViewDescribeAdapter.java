@@ -24,6 +24,9 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
     private OnDeleteItemClickListener mOnDeleteItemClickListener;
     private Context mContext;
 
+
+
+
     public void setmOnDeleteItemClickListener(OnDeleteItemClickListener mOnDeleteItemClickListener) {
         this.mOnDeleteItemClickListener = mOnDeleteItemClickListener;
     }
@@ -35,6 +38,7 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
     public RecyclerViewDescribeAdapter(Context context, List<RecyclerDescribe> data) {
         this.mContext = context;
         this.mData = data;
+
     }
 
     @Override
@@ -48,6 +52,21 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(final DescribeViewHolder holder, final int position) {
         holder.tv_describe.setText(mData.get(position).getDescribe());
         holder.img_delete.setEnabled(!mData.get(position).isFinished());
+        holder.tv_level.setText(mData.get(position).getPlanLevel());
+        //任务的重要程度
+        switch (mData.get(position).getPlanLevel()){
+            case "重要":
+                holder.tv_level.getBackground().setAlpha(250);
+                break;
+            case "一般":
+                holder.tv_level.getBackground().setAlpha(160);
+                break;
+            case "不重要":
+                holder.tv_level.getBackground().setAlpha(30);
+            break;
+        }
+
+        //标记完成任务
         if (mData.get(position).isFinished()) {
             holder.img_delete.setAlpha(0.0f);
             holder.tv_isFinished.setText(R.string.finished);
@@ -57,6 +76,7 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
             holder.tv_isFinished.setText(R.string.unfinished);
             holder.tv_isFinished.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorTextNormal));
         }
+
         holder.tv_isFinished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,11 +104,13 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
     public class DescribeViewHolder extends RecyclerView.ViewHolder {
         TextView tv_describe;
         TextView tv_isFinished;
+        TextView tv_level;
         ImageView img_delete;
         public DescribeViewHolder(View itemView) {
             super(itemView);
             tv_describe = (TextView) itemView.findViewById(R.id.tv_describe);
             tv_isFinished = (TextView) itemView.findViewById(R.id.tv_isFinished);
+            tv_level = (TextView) itemView.findViewById(R.id.tv_level);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
         }
     }

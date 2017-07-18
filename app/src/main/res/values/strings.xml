@@ -9,5 +9,13 @@
     <string name="new_plan">-点击添加新的计划-</string>
     <string name="describe_the_plan">添加计划条目</string>
     <string name="unfinished">未完成</string>
-    <string name="finished">完成</string>
+    <string name="finished">完  成</string>
+    <string name="state">状态</string>
+    <string name="confirm">确定</string>
+    <string name="date_picker">日期选择</string>
+    <string name="a_new_plan">新的计划</string>
+    <string name="important">重要</string>
+    <string name="commonly">一般</string>
+    <string name="not_important">不重要</string>
+
 </resources>

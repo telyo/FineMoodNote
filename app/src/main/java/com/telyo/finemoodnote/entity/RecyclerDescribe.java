@@ -7,6 +7,15 @@ package com.telyo.finemoodnote.entity;
 public class RecyclerDescribe {
     private String describe;
     private boolean isFinished;
+    private String planLevel;
+
+    public String getPlanLevel() {
+        return planLevel;
+    }
+
+    public void setPlanLevel(String planLevel) {
+        this.planLevel = planLevel;
+    }
 
     public String getDescribe() {
         return describe;

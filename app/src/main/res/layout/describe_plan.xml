@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <EditText
+        android:textSize="14dp"
+        android:textColor="@color/colorTextNormal"
+        android:id="@+id/et_new_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:hint="@string/describe_the_plan" />
+
+    <RadioGroup
+        android:layout_marginTop="10dp"
+        android:id="@+id/rg_plan_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:textColor="@color/colorTextNormal"
+            android:id="@+id/rb_important"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/important" />
+
+        <RadioButton
+            android:textColor="@color/colorTextNormal"
+            android:id="@+id/rb_commonly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/commonly" />
+
+        <RadioButton
+            android:textColor="@color/colorTextNormal"
+            android:id="@+id/rb_not_important"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/not_important" />
+    </RadioGroup>
+</LinearLayout>
