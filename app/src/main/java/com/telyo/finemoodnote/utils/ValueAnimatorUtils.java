@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.BounceInterpolator;
 
 /**
@@ -28,6 +29,7 @@ public class ValueAnimatorUtils {
                 float value = (float) animation.getAnimatedValue();
                 v.setScaleX(value);
                 v.setScaleY(value);
+
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter(){

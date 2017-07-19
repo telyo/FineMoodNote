@@ -6,42 +6,43 @@
     android:orientation="vertical">
 
     <EditText
-        android:textSize="14dp"
-        android:textColor="@color/colorTextNormal"
         android:id="@+id/et_new_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:hint="@string/describe_the_plan" />
+        android:hint="@string/describe_the_plan"
+        android:textColor="@color/colorTextNormal"
+        android:textSize="14dp" />
 
     <RadioGroup
-        android:layout_marginTop="10dp"
         android:id="@+id/rg_plan_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
+
         <RadioButton
-            android:textColor="@color/colorTextNormal"
             android:id="@+id/rb_important"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/important" />
+            android:text="@string/important"
+            android:textColor="@color/colorTextNormal" />
 
         <RadioButton
-            android:textColor="@color/colorTextNormal"
             android:id="@+id/rb_commonly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/commonly" />
+            android:text="@string/commonly"
+            android:textColor="@color/colorTextNormal" />
 
         <RadioButton
-            android:textColor="@color/colorTextNormal"
             android:id="@+id/rb_not_important"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/not_important" />
+            android:text="@string/not_important"
+            android:textColor="@color/colorTextNormal" />
     </RadioGroup>
 </LinearLayout>

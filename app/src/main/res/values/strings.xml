@@ -17,5 +17,8 @@
     <string name="important">重要</string>
     <string name="commonly">一般</string>
     <string name="not_important">不重要</string>
+    <string name="planStartTime">选择时间</string>
+    <string name="plan_title">给你的计划命一个标题</string>
+    <string name="no_finished">安全还没有完成了的任务</string>
 
 </resources>

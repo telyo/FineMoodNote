@@ -24,7 +24,7 @@
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/click_btn_bg"
+        android:background="@drawable/click_btn_bg_accent"
         android:text="@string/confirm"
         android:textColor="@color/white" />
 </LinearLayout>

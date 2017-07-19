@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--一个增强的FrameLayout 可以监听其所有子控件的各种事件，让后在布局上作出最合理的响应-->
+<?xml version="1.0" encoding="utf-8"?><!--一个增强的FrameLayout 可以监听其所有子控件的各种事件，让后在布局上作出最合理的响应-->
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,26 +10,26 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:fitsSystemWindows="true">
         <!--可折叠式标题栏-->
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
             <LinearLayout
                 android:id="@+id/ll_afterLogin"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorHomeOrigin"
+                android:fitsSystemWindows="true"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="?attr/actionBarSize">
+                android:paddingTop="?attr/actionBarSize"
+                android:visibility="gone">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_icon"
@@ -72,11 +71,11 @@
 
 
                     <TextView
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginRight="20dp"
                         android:id="@+id/tv_jobName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="20dp"
                         android:drawableLeft="@drawable/job"
                         android:drawablePadding="10dp"
                         android:gravity="center"
@@ -84,10 +83,10 @@
 
 
                     <TextView
-                        android:gravity="right"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="倒计时:  "
                         android:textSize="20dp" />
 
@@ -104,6 +103,7 @@
 
                 </LinearLayout>
             </LinearLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_beforeLogin"
                 android:layout_width="match_parent"
@@ -126,6 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
                     android:text="点击登录"
                     android:textColor="@color/colorTextNormal" />
             </RelativeLayout>
@@ -134,8 +135,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light" />
 

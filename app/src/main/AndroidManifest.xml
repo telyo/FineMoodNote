@@ -3,13 +3,16 @@
     package="com.telyo.finemoodnote">
 
     <application
+        android:name=".application.BassApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainActivityTheme"
             android:label="@string/home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,26 +22,34 @@
         </activity>
 
         <!--登录界面-->
-        <activity android:name=".ui.LoginActivity"
-            android:label="@string/login"/>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:label="@string/login" />
         <!--计划-->
-        <activity android:name=".ui.PlanActivity"
-            android:label="@string/plan"/>
+        <activity
+            android:name=".ui.PlanActivity"
+            android:theme="@style/MainActivityTheme"
+            android:label="@string/plan" />
         <!--备忘录-->
-        <activity android:name=".ui.MemoActivity"
-            android:label="@string/memo"/>
+        <activity
+            android:name=".ui.MemoActivity"
+            android:label="@string/memo" />
         <!--客户管理-->
-        <activity android:name=".ui.ContactsActivity"
-            android:label="@string/custom_manager"/>
+        <activity
+            android:name=".ui.ContactsActivity"
+            android:label="@string/custom_manager" />
         <!--短信管理 （后期要修改）-->
-        <activity android:name=".ui.MessageActivity"
-            android:label="信息管理"/>
+        <activity
+            android:name=".ui.MessageActivity"
+            android:label="信息管理" />
         <!--日期选择-->
-        <activity android:name=".ui.DatePickerActivity"
-            android:label="@string/date_picker"/>
+        <activity
+            android:name=".ui.DatePickerActivity"
+            android:label="@string/date_picker" />
         <!--添加新计划-->
-        <activity android:name=".ui.NewPlanActivity"
-            android:label="@string/a_new_plan"/>
+        <activity
+            android:name=".ui.NewPlanActivity"
+            android:label="@string/a_new_plan" />
     </application>
 
 </manifest>

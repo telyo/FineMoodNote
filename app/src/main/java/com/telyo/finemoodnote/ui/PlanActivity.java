@@ -26,9 +26,14 @@ import com.telyo.finemoodnote.entity.RecyclerDescribe;
 import com.telyo.finemoodnote.entity.RecyclerPlans;
 import com.telyo.finemoodnote.utils.L;
 import com.telyo.finemoodnote.utils.ValueAnimatorUtils;
+import com.telyo.finemoodnote.views.ScrollerControlRecycler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.telyo.finemoodnote.utils.Constants.DATE_PICK_REQUEST_CODE;
+import static com.telyo.finemoodnote.utils.Constants.NEW_PLAN_REQUEST_CODE;
+import static com.telyo.finemoodnote.utils.Constants.NEW_PLAN_REQUEST_CONTENT;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -39,7 +44,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     private EditText mEt_jobTitle;
     private TextView mTv_jobTime;
 
-    private RecyclerView mRv_describe;
+    private ScrollerControlRecycler mRv_describe;
     private ImageView mImg_editOrAdd;
 
     private ImageView mImg_cancel;
@@ -49,6 +54,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     private RecyclerView mRv_plans;
 
     private boolean isEdit = false;
+    //用一个布局来显示要添加的内容
     private View describeView;
     private LinearLayout ll;
 
@@ -64,13 +70,12 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     //计划描述
     private List<RecyclerDescribe> mDescribeData = new ArrayList<>();
     private RecyclerViewDescribeAdapter mDescribeAdapter;
-    //选着计划执行的日期
-    public static final int DATE_PICK_REQUEST_CODE = 0002;
+
 
     //所有计划
     private List<RecyclerPlans> mPlansData = new ArrayList<>();
     private RecyclerViewPlansAdapter mPlansAdapter;
-    private static final int NEW_PLAN_REQUEST_CODE = 0003;
+
     private EditText mEt_new_describe;
     private RadioGroup mRadioGroup;
 
@@ -96,10 +101,10 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         mTv_jobTime = (TextView) findViewById(R.id.tv_doneTime);
         mTv_jobTime.setOnClickListener(this);
 
-        mRv_describe = (RecyclerView) findViewById(R.id.rv_workDescribe);
+        mRv_describe = (ScrollerControlRecycler) findViewById(R.id.rv_workDescribe);
         mImg_editOrAdd = (ImageView) findViewById(R.id.img_or_edit_add);
         mImg_editOrAdd.setOnClickListener(this);
-        setEditImgResource(EDIT_STATE);
+        setEditImgResource(EDIT_RESENT_PLAN);
 
         mImg_cancel = (ImageView) findViewById(R.id.img_cancel);
         mImg_cancel.setOnClickListener(this);
@@ -107,6 +112,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         mImg_confirm = (ImageView) findViewById(R.id.img_confirm);
         mImg_confirm.setOnClickListener(this);
         mImg_confirm.getBackground().setAlpha(100);
+
 
         mTv_addNewPlan = (TextView) findViewById(R.id.tv_addNewPlan);
         mTv_addNewPlan.setOnClickListener(this);
@@ -190,8 +196,11 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         switch (EDIT_STATE) {
             case EDIT_RESENT_PLAN:
                 editLeastPlan();
+                initLlView();
+                editDescribe(true);
                 break;
             case EDIT_DESCRIBE:
+                initLlView();
                 editDescribe(true);
                 break;
             case ADD_DESCRIBE:
@@ -290,9 +299,9 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
 
             mDescribeData.add(describe);
             mDescribeAdapter.notifyDataSetChanged();
+            mRv_describe.smoothScrollToPosition(mDescribeData.size()-1);
             showRvdescribe();
         }
-
         initLlView();
         EDIT_STATE = ADD_DESCRIBE;
     }
@@ -326,6 +335,14 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
                 if (data != null) {
                     String date = data.getStringExtra("date");
                     mTv_jobTime.setText(date);
+                }
+                break;
+            case NEW_PLAN_REQUEST_CODE:
+                if (data != null){
+                    RecyclerPlans plan = data.getParcelableExtra(NEW_PLAN_REQUEST_CONTENT);
+                    mPlansData.add(plan);
+                    mPlansAdapter.notifyDataSetChanged();
+                    mRv_plans.scrollToPosition(mPlansData.size()-1);
                 }
                 break;
         }

@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 
 import com.telyo.finemoodnote.R;
 
-import static com.telyo.finemoodnote.ui.PlanActivity.DATE_PICK_REQUEST_CODE;
+import static com.telyo.finemoodnote.utils.Constants.DATE_PICK_REQUEST_CODE;
 
 /**
  * Created by Administrator on 2017/7/18.
@@ -43,6 +43,7 @@ public class DatePickerActivity extends BaseThemeActivity {
                         + (mDatePicker.getMonth() + 1) + "-"
                         + mDatePicker.getDayOfMonth();
                 Intent intent = new Intent();
+
                 intent.putExtra("date",date);
                 DatePickerActivity.this.setResult(DATE_PICK_REQUEST_CODE,intent);
                 finish();

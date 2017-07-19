@@ -19,6 +19,9 @@ public class RecyclerPlans implements Parcelable{
 
     private List<RecyclerDescribe> describes;
 
+    public RecyclerPlans(){
+
+    }
     protected RecyclerPlans(Parcel in) {
         date = in.readString();
         time = in.readString();
