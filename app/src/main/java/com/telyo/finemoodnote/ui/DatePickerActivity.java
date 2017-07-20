@@ -8,8 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.telyo.finemoodnote.R;
+import com.telyo.finemoodnote.utils.DateUtil;
 
 import static com.telyo.finemoodnote.utils.Constants.DATE_PICK_REQUEST_CODE;
 
@@ -42,11 +44,14 @@ public class DatePickerActivity extends BaseThemeActivity {
                 String date = mDatePicker.getYear() + "-"
                         + (mDatePicker.getMonth() + 1) + "-"
                         + mDatePicker.getDayOfMonth();
-                Intent intent = new Intent();
-
-                intent.putExtra("date",date);
-                DatePickerActivity.this.setResult(DATE_PICK_REQUEST_CODE,intent);
-                finish();
+                if (DateUtil.isUsefulDate(date,"yyyy-MM-dd")) {
+                    Intent intent = new Intent();
+                    intent.putExtra("date",date);
+                    DatePickerActivity.this.setResult(DATE_PICK_REQUEST_CODE,intent);
+                    finish();
+                }else {
+                    Toast.makeText(DatePickerActivity.this, R.string.toast_is_date_userful, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

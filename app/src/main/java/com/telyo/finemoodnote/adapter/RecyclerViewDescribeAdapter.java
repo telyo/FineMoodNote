@@ -53,17 +53,18 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
         holder.tv_describe.setText(mData.get(position).getDescribe());
         holder.img_delete.setEnabled(!mData.get(position).isFinished());
         holder.tv_level.setText(mData.get(position).getPlanLevel());
+        //if (holder.tv_level.getText().toString().equals("重要"))
         //任务的重要程度
-        switch (mData.get(position).getPlanLevel()){
+        switch (holder.tv_level.getText().toString()){
             case "重要":
-                holder.tv_level.getBackground().setAlpha(250);
+                holder.tv_level.setBackgroundColor(ContextCompat.getColor(mContext, R.color.important));
                 break;
             case "一般":
-                holder.tv_level.getBackground().setAlpha(160);
+                holder.tv_level.setBackgroundColor(ContextCompat.getColor(mContext, R.color.commonly));
                 break;
             case "不重要":
-                holder.tv_level.getBackground().setAlpha(30);
-            break;
+                holder.tv_level.setBackgroundColor(ContextCompat.getColor(mContext, R.color.not_important));
+                break;
         }
 
         //标记完成任务

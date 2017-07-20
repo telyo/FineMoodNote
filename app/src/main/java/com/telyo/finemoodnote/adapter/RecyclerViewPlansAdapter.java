@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.telyo.finemoodnote.R;
 import com.telyo.finemoodnote.entity.RecyclerPlans;
+import com.telyo.finemoodnote.utils.DateUtil;
+import com.telyo.finemoodnote.utils.OrderUtils;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class RecyclerViewPlansAdapter extends RecyclerView.Adapter<RecyclerViewP
     }
 
     public RecyclerViewPlansAdapter(Context context, List<RecyclerPlans> data){
+        data = OrderUtils.orderPlansByDate(data,context.getString(R.string.date_type_ymd));
         this.mData = data;
         this.mContext = context;
     }
@@ -45,7 +48,12 @@ public class RecyclerViewPlansAdapter extends RecyclerView.Adapter<RecyclerViewP
         holder.tv_time.setText(mData.get(position).getTime());
         holder.tv_set_time.setText(mData.get(position).getSet_time());
         holder.tv_title.setText(mData.get(position).getTitle());
-
+        if (position == DateUtil.getCurrentPlanPosition(mData,mContext.getString(R.string.date_type_ymd))) {
+            holder.imageView.setImageResource(R.drawable.icon_ring_resent);
+            holder.itemView.setBackgroundResource( R.drawable.click_curennt_plan_bg);
+        }else {
+            holder.imageView.setImageResource(R.drawable.icon_ring_normal);
+        }
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

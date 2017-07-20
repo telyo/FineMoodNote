@@ -24,7 +24,7 @@
                 android:id="@+id/ll_afterLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorHomeOrigin"
+                android:background="@color/colorPrimary"
                 android:fitsSystemWindows="true"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -161,7 +161,7 @@
                 android:background="@drawable/click_home_bg"
                 app:card_radius="6"
                 app:content_text="least job is"
-                app:img_border_color="@color/colorHomeOrigin"
+                app:img_border_color="@color/colorPrimary"
                 app:img_src="@drawable/jobs"
                 app:title_text="jobs" />
 
@@ -195,7 +195,7 @@
                 android:background="@drawable/click_home_bg"
                 app:card_radius="6"
                 app:content_text="短信转发"
-                app:img_border_color="@color/colorHomeOrigin"
+                app:img_border_color="@color/colorPrimary"
                 app:img_src="@drawable/message"
                 app:title_text="信息管理" />
         </LinearLayout>

@@ -143,25 +143,24 @@ public class NewPlanActivity extends BaseThemeActivity implements View.OnClickLi
     }
 
     private void doConfirmAddNewPlan() {
+        toAddDescribe();
         if (!TextUtils.isEmpty(mEt_jobTitle.getText().toString())
-                && mTv_TimeChoose.getText().toString().equals(getString(R.string.planStartTime))){
+                && !mTv_TimeChoose.getText().toString().equals(getString(R.string.date_picker))){
             mPlans.setSet_time(mTv_TimeChoose.getText().toString());
             mPlans.setTitle(mEt_jobTitle.getText().toString());
             mPlans.setDone_state(getString(R.string.unfinished));
-            mPlans.setTime(getString(R.string.no_finished));
             if (mDescribes.size() > 0){
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(NEW_PLAN_REQUEST_CONTENT,mPlans);
                 intent.putExtras(bundle);
                 setResult(NEW_PLAN_REQUEST_CODE,intent);
-                
                 finish();
             }else {
-                Toast.makeText(NewPlanActivity.this, "no any plan!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewPlanActivity.this, R.string.toast_no_plan, Toast.LENGTH_SHORT).show();
             }
         }else {
-            Toast.makeText(this, "oooooo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_time_pick, Toast.LENGTH_SHORT).show();
         }
     }
 

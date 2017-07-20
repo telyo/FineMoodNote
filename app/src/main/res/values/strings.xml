@@ -17,8 +17,10 @@
     <string name="important">重要</string>
     <string name="commonly">一般</string>
     <string name="not_important">不重要</string>
-    <string name="planStartTime">选择时间</string>
     <string name="plan_title">给你的计划命一个标题</string>
-    <string name="no_finished">安全还没有完成了的任务</string>
+    <string name="toast_no_plan">当前计划没有任务</string>
+    <string name="toast_time_pick">请选择日期和写标题</string>
+    <string name="toast_is_date_userful">改变不了过去，但可以把握好未来！</string>
+    <string name="date_type_ymd">yyyy-MM-dd</string>
 
 </resources>

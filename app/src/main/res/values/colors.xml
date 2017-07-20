@@ -5,9 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorTextNormal">#757575</color>
-    <color name="colorHomeOrigin">#03BCD8</color>
     <color name="colorHomePress">#03BCD8</color>
     <color name="colorHalfTransparent">#e0000000</color>
     
     <color name="white">#FFFFFF</color>
+
+    <color name="important">#3443A1</color>
+    <color name="commonly">#9AA2D0</color>
+    <color name="not_important">#CDD1E8</color>
+
 </resources>

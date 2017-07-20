@@ -31,11 +31,12 @@
             android:background="@android:color/transparent"
             android:enabled="false"
             android:gravity="center"
-            android:hint="@string/planStartTime"
-            android:textColor="@color/colorHomeOrigin"
+            android:hint="@string/date_picker"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="14dp" />
 
         <com.telyo.finemoodnote.views.ScrollerControlRecycler
+            android:focusableInTouchMode="true"
             android:id="@+id/rv_workDescribe"
             android:layout_width="match_parent"
             android:layout_height="100dp" />

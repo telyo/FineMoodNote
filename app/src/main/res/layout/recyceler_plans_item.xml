@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="5dp"
+    android:paddingTop="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/click_home_bg"
@@ -19,27 +21,31 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2017-01-03" />
+                    android:text="完成日期"
+                    android:textSize="11dp" />
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_date"
-                    android:text="1:30 pm"
-                    android:textColor="@android:color/black" />
+                    android:text="完成时间"
+                    android:textColor="@android:color/black"
+                    android:textSize="11dp" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tv_state"
@@ -55,7 +61,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/tv_state"
-                    android:text="全部完成" />
+                    android:text="全部完成"
+                    android:textSize="11dp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -79,7 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="好好学习天天向上"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/tv_set_time"
@@ -94,5 +102,5 @@
         android:layout_width="5dp"
         android:layout_height="16dp"
         android:layout_margin="12dp"
-        android:background="@color/colorHomeOrigin" />
+        android:background="@color/colorPrimary" />
 </LinearLayout>

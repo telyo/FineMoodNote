@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorHomeOrigin"
+        android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Dark"
         />
@@ -51,8 +51,8 @@
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:gravity="center"
-                    android:hint="@string/planStartTime"
-                    android:textColor="@color/colorHomeOrigin"
+                    android:hint="@string/date_picker"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14dp" />
 
                 <android.support.v7.widget.RecyclerView
