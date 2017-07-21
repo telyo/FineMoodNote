@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.telyo.finemoodnote.R;
 import com.telyo.finemoodnote.entity.RecyclerDescribe;
+import com.telyo.finemoodnote.entity.RecyclerPlans;
 
 import java.util.List;
 
@@ -122,4 +123,18 @@ public class RecyclerViewDescribeAdapter extends RecyclerView.Adapter<RecyclerVi
     public interface OnDeleteItemClickListener {
         void onDeleteItemClick(DescribeViewHolder holder, int position);
     }
+    public void addData(int position, RecyclerDescribe data) {
+        mData.add(position, data);
+        notifyItemInserted(position);
+        notifyItemRangeChanged(position, mData.size() - position);
+    }
+
+    public void removeData(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+        if (position != mData.size()) { // 这个判断的意义就是如果移除的是最后一个，就不用管它了，
+            notifyItemRangeChanged(position, mData.size() - position);
+        }
+    }
+
 }

@@ -34,28 +34,25 @@
         <!--备忘录-->
         <activity
             android:name=".ui.MemoActivity"
-            android:theme="@style/MainActivityTheme"
             android:label="@string/memo" />
         <!--客户管理-->
         <activity
             android:name=".ui.ContactsActivity"
-            android:theme="@style/MainActivityTheme"
             android:label="@string/custom_manager" />
         <!--短信管理 （后期要修改）-->
         <activity
             android:name=".ui.MessageActivity"
-            android:theme="@style/MainActivityTheme"
             android:label="信息管理" />
         <!--日期选择-->
         <activity
             android:name=".ui.DatePickerActivity"
-            android:theme="@style/MainActivityTheme"
             android:label="@string/date_picker" />
         <!--添加新计划-->
         <activity
             android:name=".ui.NewPlanActivity"
-            android:theme="@style/MainActivityTheme"
             android:label="@string/a_new_plan" />
+        <activity android:name=".ui.ShowPlanActivity"
+            android:label="计划详情"/>
     </application>
 
 </manifest>

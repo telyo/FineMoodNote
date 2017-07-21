@@ -16,7 +16,6 @@ public class OrderUtils {
             for (int n = 0;n<plans.size(); n++){
                 long dateSize = DateUtil.getLongFromStringDate(plans.get(n).getSet_time(),dateType);
                 num.add(dateSize);
-                L.e("List<Long> num =" + dateSize);
             }
             if (plans != null && plans.size()>1){
                 for (int i = 0; i < plans.size(); i++){
@@ -36,7 +35,7 @@ public class OrderUtils {
                             plans.add(j,tempPlansI);
                             plans.remove(i);
                             plans.add(i,tempPlansJ);
-                            L.d(" 转换了 " + i  + " 轮，第 " + j + "次");
+
                         }
                     }
 

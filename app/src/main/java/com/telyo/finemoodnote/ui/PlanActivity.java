@@ -4,12 +4,14 @@ import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -29,6 +31,7 @@ import com.telyo.finemoodnote.entity.RecyclerPlans;
 import com.telyo.finemoodnote.utils.DateUtil;
 import com.telyo.finemoodnote.utils.L;
 import com.telyo.finemoodnote.utils.OrderUtils;
+import com.telyo.finemoodnote.utils.SnackBarUtils;
 import com.telyo.finemoodnote.utils.ValueAnimatorUtils;
 import com.telyo.finemoodnote.views.ScrollerControlRecycler;
 
@@ -38,6 +41,8 @@ import java.util.List;
 import static com.telyo.finemoodnote.utils.Constants.DATE_PICK_REQUEST_CODE;
 import static com.telyo.finemoodnote.utils.Constants.NEW_PLAN_REQUEST_CODE;
 import static com.telyo.finemoodnote.utils.Constants.NEW_PLAN_REQUEST_CONTENT;
+import static com.telyo.finemoodnote.utils.Constants.SHOW_PLAN_REQUEST_CODE;
+import static com.telyo.finemoodnote.utils.Constants.SHOW_PLAN_REQUEST_CONTENT;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -55,12 +60,12 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     private ImageView mImg_confirm;
 
     private FloatingActionButton mFl_addNewPlan;
-    private RecyclerView mRv_plans;
+    private ScrollerControlRecycler mRv_plans;
 
     private boolean isEdit = false;
     //用一个布局来显示要添加的内容
     private View describeView;
-    private LinearLayout ll;
+    private LinearLayout mLl_edit;
 
     //编辑计划描述时的三种状态
     //点击编辑当前计划
@@ -81,6 +86,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     private EditText mEt_new_describe;
     private RadioGroup mRadioGroup;
     private boolean isScroll = true;
+    private int mPlaNPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +110,8 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
             describe.setPlanLevel("一般");
             mDescribeData.add(describe);
         }
+
+
         for (int i = 0; i < 22; i++) {
             RecyclerPlans plan = new RecyclerPlans();
             plan.setTime(i + "time");
@@ -111,7 +119,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
             plan.setDescribes(mDescribeData);
             plan.setDate("2017-08-09");
             plan.setTitle(i + "个任务");
-            plan.setSet_time("2017-07-" + (10+i) );
+            plan.setSet_time("2017-07-" + (10 + i));
             mPlansData.add(plan);
         }
 
@@ -139,17 +147,17 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         mFl_addNewPlan.setOnClickListener(this);
         //虚化背景
         NestedScrollView mNsv_plans = (NestedScrollView) findViewById(R.id.nsv_plans);
-        mNsv_plans.getBackground().setAlpha(100);
+       // mNsv_plans.getBackground().setAlpha(100);
         //初始化一个View用来编辑描述
-        describeView = getLayoutInflater().inflate(R.layout.describe_plan, this.ll, false);
+        describeView = getLayoutInflater().inflate(R.layout.describe_plan, this.mLl_edit, false);
         mEt_new_describe = (EditText) describeView.findViewById(R.id.et_new_describe);
         mRadioGroup = (RadioGroup) describeView.findViewById(R.id.rg_plan_level);
         mRadioGroup.check(R.id.rb_commonly);
-        //TODO 虚拟数据
-        initCurrentPlan();
         mDescribeAdapter = new RecyclerViewDescribeAdapter(PlanActivity.this, mDescribeData);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+        //TODO 虚拟数据
+        initCurrentPlan();
         mRv_describe.setLayoutManager(manager);
         mRv_describe.setAdapter(mDescribeAdapter);
         //标记是否已完成计划条目
@@ -166,24 +174,30 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
             @Override
             public void onDeleteItemClick(RecyclerViewDescribeAdapter.DescribeViewHolder holder, int position) {
                 if (isEdit) {
-                    mDescribeData.remove(position);
-                    mDescribeAdapter.notifyDataSetChanged();
+                    mDescribeAdapter.removeData(position);
                     upUserDate();
                 }
             }
         });
 
-        mRv_plans = (RecyclerView) findViewById(R.id.rv_plans);
+        mRv_plans = (ScrollerControlRecycler) findViewById(R.id.rv_plans);
         final LinearLayoutManager pManager = new LinearLayoutManager(PlanActivity.this);
         pManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRv_plans.setLayoutManager(pManager);
         mPlansAdapter = new RecyclerViewPlansAdapter(PlanActivity.this, mPlansData);
         mRv_plans.setAdapter(mPlansAdapter);
-        mRv_plans.smoothScrollToPosition(DateUtil.getCurrentPlanPosition(mPlansData,getString(R.string.date_type_ymd)));
+        mRv_plans.setItemAnimator(new DefaultItemAnimator());
+        mRv_plans.smoothScrollToPosition(DateUtil.getCurrentPlanPosition(mPlansData, getString(R.string.date_type_ymd)));
         mPlansAdapter.setOnItemLongClickListener(new RecyclerViewPlansAdapter.OnItemLongClickListener() {
             @Override
             public void onLongClick(View itemView, int position) {
-
+                deleteItem(itemView, position);
+            }
+        });
+        mPlansAdapter.setOnItemClickListener(new RecyclerViewPlansAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(View itemView, int position) {
+                showItem(position);
             }
         });
 
@@ -195,18 +209,72 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         });
     }
 
+    //移除用于编辑describe的EditText 并重设et_new的Hint
+    private void initLlEditView() {
+        if (mLl_edit != null && mLl_edit.getChildCount() > 3) {
+            editDescribe(false);
+        }
+        mEt_new_describe.setText("");
+        mRadioGroup.check(R.id.rb_commonly);
+    }
+
+    //初始化当前任务
     private void initCurrentPlan() {
-        int position = DateUtil.getCurrentPlanPosition(mPlansData,getString(R.string.date_type_ymd));
-        if (mPlansData.size() > position) {
-            mDescribeData = mPlansData.get(position).getDescribes();
-            mEt_jobTitle.setText(mPlansData.get(position).getTitle());
-            mTv_jobTime.setText(mPlansData.get(position).getSet_time());
+        mPlaNPosition = DateUtil.getCurrentPlanPosition(mPlansData, getString(R.string.date_type_ymd));
+        if (mPlansData != null && mPlansData.size() > mPlaNPosition) {
+            mDescribeData = mPlansData.get(mPlaNPosition).getDescribes();
+            mDescribeAdapter.notifyDataSetChanged();
+            mEt_jobTitle.setText(mPlansData.get(mPlaNPosition).getTitle());
+            mTv_jobTime.setText(mPlansData.get(mPlaNPosition).getSet_time());
         }
     }
 
+
+    private void showItem(int position) {
+        RecyclerPlans plan = mPlansData.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(SHOW_PLAN_REQUEST_CONTENT,plan);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        intent.setClass(PlanActivity.this,ShowPlanActivity.class);
+        startActivityForResult(intent,SHOW_PLAN_REQUEST_CODE);
+    }
+
+    //用SnackBar 删除计划
+    private void deleteItem(final View itemView, final int position) {
+        itemView.setSelected(true);
+        final Snackbar snackBar = Snackbar.make(itemView, R.string.Snakcar_cancel_plan, Snackbar.LENGTH_LONG);
+        SnackBarUtils.SnackbarAddView(snackBar, R.layout.snackbar_button_layout, 1);
+        SnackBarUtils.SetAction(snackBar, R.id.cancel_btn, getString(R.string.no), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemView.setSelected(false);
+                snackBar.dismiss();
+            }
+        });
+        snackBar.setAction(R.string.yes, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPlansAdapter.removeData(position);
+                itemView.setSelected(false);
+                initCurrentPlan();
+                upUserDate();
+
+            }
+        });
+        snackBar.show();
+        snackBar.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+            @Override
+            public void onDismissed(Snackbar transientBottomBar, int event) {
+                super.onDismissed(transientBottomBar, event);
+                itemView.setSelected(false);
+            }
+        });
+    }
+
+    //悬浮按钮的动画
     private void floatButtonAnim(int scrollY, int oldScrollY) {
         if ((oldScrollY - scrollY) < 0) {
-
             if (isScroll) {
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.play(ValueAnimatorUtils.doTranslate(mFl_addNewPlan, 0, 300))
@@ -246,12 +314,11 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         }
     }
 
-
     private void switchEditOrAdd() {
         switch (EDIT_STATE) {
             case EDIT_RESENT_PLAN:
                 editLeastPlan();
-                initLlView();
+                initLlEditView();
                 editDescribe(true);
                 break;
             case EDIT_AND_ADD_DESCRIBE:
@@ -273,14 +340,15 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     }
 
     private void upUserDate() {
-        //TODO 这里应该传入参数 根据参数来更新用户数据
+        //TODO 这里应该传入参数 根据参数
+        // 来更新用户数据
     }
+
 
     private void toPickDate() {
         Intent intent = new Intent(PlanActivity.this, DatePickerActivity.class);
         startActivityForResult(intent, DATE_PICK_REQUEST_CODE);
     }
-
 
     //编辑最近一次的计划
     private void editLeastPlan() {
@@ -294,14 +362,14 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
 
     //编辑计划描述
     private void editDescribe(boolean isEdit) {
-        ll = (LinearLayout) this.findViewById(R.id.ll_planContent);
+        mLl_edit = (LinearLayout) this.findViewById(R.id.ll_planContent);
         if (isEdit) {
             describeView.setBackgroundColor(ContextCompat.getColor(PlanActivity.this, android.R.color.transparent));
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mEt_jobTitle.getLayoutParams();
-            ll.addView(describeView, lp);
+            mLl_edit.addView(describeView, lp);
             EDIT_STATE = EDIT_AND_ADD_DESCRIBE;
         } else {
-            ll.removeView(describeView);
+            mLl_edit.removeView(describeView);
         }
     }
 
@@ -309,18 +377,9 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     private void saveCancel() {
         setEditEnable(false);
         isEdit = false;
-        initLlView();
+        initLlEditView();
         setEditImgResource(EDIT_RESENT_PLAN);
         EDIT_STATE = EDIT_RESENT_PLAN;
-    }
-
-    //移除用于编辑describe的EditText 并重设et_new的Hint
-    private void initLlView() {
-        if (ll != null && ll.getChildCount() > 3) {
-            editDescribe(false);
-        }
-        mEt_new_describe.setText("");
-        mRadioGroup.check(R.id.rb_commonly);
     }
 
     //保存
@@ -331,6 +390,7 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
         saveNowPlanDescribe();
         setEditImgResource(EDIT_RESENT_PLAN);
         EDIT_STATE = EDIT_RESENT_PLAN;
+        removeEmptyPlan();
     }
 
     //添加计划的描述并显示
@@ -346,17 +406,27 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
                     describe.setPlanLevel(radioButton.getText().toString());
                 }
             }
-            mDescribeData.add(describe);
-            mDescribeAdapter.notifyDataSetChanged();
-            mRv_describe.smoothScrollToPosition(mDescribeData.size() - 1);
+            mDescribeAdapter.addData(mDescribeData.size(), describe);
+            mRv_describe.smoothScrollToPosition(mDescribeData.size()-1);
+        } else {
+            removeEmptyPlan();
         }
-        initLlView();
+        initLlEditView();
         EDIT_STATE = EDIT_AND_ADD_DESCRIBE;
+    }
+    //移除空计划
+    private void removeEmptyPlan() {
+        if (mDescribeData.size() == 0) {
+            mPlansData.remove(mPlaNPosition);
+            mPlansAdapter.notifyDataSetChanged();
+            initCurrentPlan();
+        }
     }
 
     private void saveNowPlanDescribe() {
         //TODO save things
     }
+
 
     private void addNewPlan() {
         Intent intent = new Intent(PlanActivity.this, NewPlanActivity.class);
@@ -395,9 +465,9 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
                 if (data != null) {
                     RecyclerPlans plan = data.getParcelableExtra(NEW_PLAN_REQUEST_CONTENT);
                     mPlansData.add(plan);
-                    mPlansData = OrderUtils.orderPlansByDate(mPlansData,getString(R.string.date_type_ymd));
+                    mPlansData = OrderUtils.orderPlansByDate(mPlansData, getString(R.string.date_type_ymd));
                     mPlansAdapter.notifyDataSetChanged();
-                    mRv_plans.smoothScrollToPosition(DateUtil.getCurrentPlanPosition(mPlansData,getString(R.string.date_type_ymd)));
+                    mRv_plans.smoothScrollToPosition(DateUtil.getCurrentPlanPosition(mPlansData, getString(R.string.date_type_ymd)));
                 }
                 break;
         }

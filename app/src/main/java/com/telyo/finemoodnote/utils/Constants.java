@@ -14,4 +14,6 @@ public class Constants {
     public static final int NEW_PLAN_REQUEST_CODE = 0003;
 
     public static final String NEW_PLAN_REQUEST_CONTENT = "a new plan";
+    public static final String SHOW_PLAN_REQUEST_CONTENT = "show a plan";
+    public static final int SHOW_PLAN_REQUEST_CODE = 0004;
 }

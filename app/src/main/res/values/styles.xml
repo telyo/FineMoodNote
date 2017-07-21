@@ -9,4 +9,13 @@
     </style>
     <style name="MainActivityTheme" parent="AppTheme"/>
 
+    <style name="Theme_dialog" parent="android:Theme.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="pop_anim_style">
+        <item name="android:windowEnterAnimation">@anim/anim_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit</item>
+    </style>
 </resources>

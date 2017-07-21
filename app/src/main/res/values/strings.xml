@@ -22,5 +22,8 @@
     <string name="toast_time_pick">请选择日期和写标题</string>
     <string name="toast_is_date_userful">改变不了过去，但可以把握好未来！</string>
     <string name="date_type_ymd">yyyy-MM-dd</string>
+    <string name="Snakcar_cancel_plan">取消这个计划</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
 
 </resources>
