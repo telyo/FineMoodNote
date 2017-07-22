@@ -16,4 +16,7 @@ public class Constants {
     public static final String NEW_PLAN_REQUEST_CONTENT = "a new plan";
     public static final String SHOW_PLAN_REQUEST_CONTENT = "show a plan";
     public static final int SHOW_PLAN_REQUEST_CODE = 0004;
+
+    //圆周率
+    public static final double pi = 3.1415926;
 }

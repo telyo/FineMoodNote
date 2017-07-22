@@ -4,13 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <com.telyo.finemoodnote.views.CircleProgressView
-        android:background="@color/colorPrimary"
+        android:id="@+id/progressView"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:text="20%" />
+        app:progress="100" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_setProgress"
+        android:text="设置进度"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
