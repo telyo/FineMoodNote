@@ -14,6 +14,7 @@ import com.telyo.finemoodnote.R;
 import com.telyo.finemoodnote.entity.RecyclerPlans;
 import com.telyo.finemoodnote.fragment.FragmentPlanData;
 import com.telyo.finemoodnote.fragment.FragmentPlanDetail;
+import com.telyo.finemoodnote.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ public class ShowPlanActivity extends BaseThemeActivity{
         //拿到数据
         Intent intent = getIntent();
         mPlan = intent.getParcelableExtra(SHOW_PLAN_REQUEST_CONTENT);
+        L.d("详情" + mPlan.getDescribes().get(0));
         Bundle bundle = new Bundle();
         bundle.putParcelable(SHOW_PLAN_REQUEST_CONTENT,mPlan);
         mFragmentPlanDetail.setArguments(bundle);

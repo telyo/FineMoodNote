@@ -37,7 +37,7 @@ public class FragmentPlanData extends Fragment {
 
     private void initView(View v) {
         CircleProgressView progressView = (CircleProgressView) v.findViewById(R.id.progressView);
-        //progressView.setProgress((int) (getFinishedCount() * 100 / (mPlan.getDescribes().size())));
+       // progressView.setProgress((int) (getFinishedCount() * 100 / (mPlan.getDescribes().size())));
         TextView tv_date = (TextView) v.findViewById(R.id.tv_date);
         TextView tv_plan_name = (TextView) v.findViewById(R.id.tv_plan_name);
         TextView tv_plan_count = (TextView) v.findViewById(R.id.tv_plan_count);

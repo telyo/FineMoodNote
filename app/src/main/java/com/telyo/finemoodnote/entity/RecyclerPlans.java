@@ -23,26 +23,6 @@ public class RecyclerPlans implements Parcelable{
     public RecyclerPlans(){
 
     }
-    protected RecyclerPlans(Parcel in) {
-        date = in.readString();
-        time = in.readString();
-        done_state = in.readString();
-        title = in.readString();
-        set_time = in.readString();
-    }
-
-    public static final Creator<RecyclerPlans> CREATOR = new Creator<RecyclerPlans>() {
-        @Override
-        public RecyclerPlans createFromParcel(Parcel in) {
-            return new RecyclerPlans(in);
-        }
-
-        @Override
-        public RecyclerPlans[] newArray(int size) {
-            return new RecyclerPlans[size];
-        }
-    };
-
     public String getDate() {
         return date;
     }
@@ -96,6 +76,8 @@ public class RecyclerPlans implements Parcelable{
         return 0;
     }
 
+
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(date);
@@ -104,4 +86,24 @@ public class RecyclerPlans implements Parcelable{
         dest.writeString(title);
         dest.writeString(set_time);
     }
+
+    protected RecyclerPlans(Parcel in) {
+        date = in.readString();
+        time = in.readString();
+        done_state = in.readString();
+        title = in.readString();
+        set_time = in.readString();
+    }
+
+    public static final Creator<RecyclerPlans> CREATOR = new Creator<RecyclerPlans>() {
+        @Override
+        public RecyclerPlans createFromParcel(Parcel in) {
+            return new RecyclerPlans(in);
+        }
+
+        @Override
+        public RecyclerPlans[] newArray(int size) {
+            return new RecyclerPlans[size];
+        }
+    };
 }

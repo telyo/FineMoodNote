@@ -230,8 +230,19 @@ public class PlanActivity extends BaseThemeActivity implements View.OnClickListe
     }
 
 
+    //查看计划详情
     private void showItem(int position) {
         RecyclerPlans plan = mPlansData.get(position);
+        //L.d("详情" + plan.getDescribes().get(0));
+        List<RecyclerDescribe> list = new ArrayList<>();
+        for (int i = 0; i<10; i++){
+            RecyclerDescribe describe = new RecyclerDescribe();
+            describe.setDescribe("asdfsad" + i);
+            describe.setFinished(true);
+            describe.setPlanLevel("重要");
+            list.add(describe);
+        }
+        plan.setDescribes(list);
         Bundle bundle = new Bundle();
         bundle.putParcelable(SHOW_PLAN_REQUEST_CONTENT,plan);
         Intent intent = new Intent();
