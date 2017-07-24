@@ -99,6 +99,7 @@ public class NewPlanActivity extends BaseThemeActivity implements View.OnClickLi
         mRadioGroup = (RadioGroup) describeView.findViewById(R.id.rg_plan_level);
         mRadioGroup.check(R.id.rb_commonly);
 
+
     }
 
 
@@ -106,7 +107,11 @@ public class NewPlanActivity extends BaseThemeActivity implements View.OnClickLi
         if (mLl_planContent.getChildCount() > 3){
             mLl_planContent.removeView(describeView);
         }
-        mLl_planContent.addView(describeView);
+        mLl_planContent.addView(describeView,mImg_or_edit_add.getLayoutParams());
+        mEt_new_describe.setFocusable(true);
+        mEt_new_describe.setFocusableInTouchMode(true);
+        mEt_new_describe.requestFocus();
+        mEt_new_describe.requestFocusFromTouch();
     }
 
 
