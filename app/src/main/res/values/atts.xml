@@ -20,5 +20,6 @@
 
     <declare-styleable name="CircleProgressView">
         <attr name="progress" format="integer"/>
+        <attr name="strokeWidth" format="integer"/>
     </declare-styleable>
 </resources>

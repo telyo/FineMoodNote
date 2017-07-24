@@ -41,6 +41,7 @@ public class CircleProgressView extends View {
     private float mSweepAngle;
     private int mProgressAngle;
     private int mProgress;
+    private int mStrokeWidth;
 
     public CircleProgressView(Context context) {
         this(context,null);
@@ -70,6 +71,7 @@ public class CircleProgressView extends View {
     private void initAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
         mProgress = ta.getInt(R.styleable.CircleProgressView_progress,0);
+        mStrokeWidth  = ta.getInt(R.styleable.CircleProgressView_strokeWidth,35);
         ta.recycle();
     }
 
@@ -105,7 +107,7 @@ public class CircleProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int strockWidth = 16;
+
         //画字体
         Paint mTextPaint = new Paint();
         Typeface font = Typeface.create("微软雅黑",Typeface.BOLD);
@@ -113,6 +115,7 @@ public class CircleProgressView extends View {
         mTextPaint.setTypeface(font);
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setTextAlign(Paint.Align.LEFT);
+        mTextPaint.setAntiAlias(true);
         Paint.FontMetrics fm = mTextPaint.getFontMetrics();
         float textHeight = fm.bottom - fm.top;
         Rect bound = new Rect();
@@ -122,15 +125,17 @@ public class CircleProgressView extends View {
                 ,(getMeasuredHeight() + textHeight/2)/2  ,mTextPaint);
         //画背景环形
         Paint circlePaint = new Paint();
-        circlePaint.setStrokeWidth(strockWidth);
+        circlePaint.setStrokeWidth(mStrokeWidth);
         circlePaint.setStyle(Paint.Style.STROKE);
         circlePaint.setColor(ContextCompat.getColor(mContext,R.color.colorTextNormal));
+        circlePaint.setAntiAlias(true);
         canvas.drawCircle(width/2,width/2,mRadio,circlePaint);
         //画进度弧
         Paint progressPaint = new Paint();
         progressPaint.setColor(mProgress_color);
         progressPaint.setStyle(Paint.Style.STROKE);
-        progressPaint.setStrokeWidth(strockWidth);
+        progressPaint.setStrokeWidth(mStrokeWidth);
+        progressPaint.setAntiAlias(true);
 
         if (mSweepAngle <= mProgressAngle) {
             canvas.drawArc(new RectF(20,20,width-20,width-20), mStartAngle, mSweepAngle,false,progressPaint);
