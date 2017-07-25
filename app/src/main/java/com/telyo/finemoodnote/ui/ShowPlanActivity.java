@@ -2,6 +2,7 @@ package com.telyo.finemoodnote.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.telyo.finemoodnote.R;
+import com.telyo.finemoodnote.entity.RecyclerDescribe;
 import com.telyo.finemoodnote.entity.RecyclerPlans;
 import com.telyo.finemoodnote.fragment.FragmentPlanData;
 import com.telyo.finemoodnote.fragment.FragmentPlanDetail;
@@ -19,6 +21,7 @@ import com.telyo.finemoodnote.utils.L;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telyo.finemoodnote.utils.Constants.PLAN_DESCRIBE;
 import static com.telyo.finemoodnote.utils.Constants.SHOW_PLAN_REQUEST_CONTENT;
 
 /**
@@ -61,8 +64,17 @@ public class ShowPlanActivity extends BaseThemeActivity{
         //拿到数据
         Intent intent = getIntent();
         mPlan = intent.getParcelableExtra(SHOW_PLAN_REQUEST_CONTENT);
-        L.d("详情" + mPlan.getDescribes().get(0));
+        List<RecyclerDescribe> list = new ArrayList<>();
+        for (int j = 0; j < 5; j++) {
+            RecyclerDescribe describe = new RecyclerDescribe();
+            describe.setDescribe("有难者乎？" + j);
+            describe.setFinished(false);
+            describe.setPlanLevel("一般");
+            list.add(describe);
+        }
+
         Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(PLAN_DESCRIBE, (ArrayList<? extends Parcelable>) list);
         bundle.putParcelable(SHOW_PLAN_REQUEST_CONTENT,mPlan);
         mFragmentPlanDetail.setArguments(bundle);
         mFragmentPlanData.setArguments(bundle);

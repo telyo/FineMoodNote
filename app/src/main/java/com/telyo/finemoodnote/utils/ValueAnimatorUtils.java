@@ -20,7 +20,7 @@ public class ValueAnimatorUtils {
     public static final String scaleY = "scaleY";
     public static final String translateY = "translationY";
     public static final String translateX = "translationX";
-    public static final String rotate = "rotate";
+    public static final String rotate = "rotation";
 
     public static ValueAnimator doScale(final View v, final boolean isVisible, float... values) {
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(values);

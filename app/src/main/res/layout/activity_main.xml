@@ -163,7 +163,7 @@
                 app:content_text="least job is"
                 app:img_border_color="@color/colorPrimary"
                 app:img_src="@drawable/jobs"
-                app:title_text="jobs" />
+                app:title_text="备忘录" />
 
             <com.telyo.finemoodnote.views.HomeGideView
                 android:id="@+id/home_plan"

@@ -15,6 +15,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.telyo.finemoodnote.R;
+import com.telyo.finemoodnote.utils.L;
 
 /**
  * Created by Administrator on 2017/7/21.
@@ -116,13 +117,17 @@ public class CircleProgressView extends View {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setTextAlign(Paint.Align.LEFT);
         mTextPaint.setAntiAlias(true);
+        //获取字体的高度
         Paint.FontMetrics fm = mTextPaint.getFontMetrics();
         float textHeight = fm.bottom - fm.top;
+        //获取字体的宽度
         Rect bound = new Rect();
         mTextPaint.getTextBounds(mShowText,0,mShowText.length(),bound);
         int textBoundsWidth = bound.width();
+        //开始画
         canvas.drawText(mShowText, (getMeasuredWidth() - textBoundsWidth)/2
                 ,(getMeasuredHeight() + textHeight/2)/2  ,mTextPaint);
+
         //画背景环形
         Paint circlePaint = new Paint();
         circlePaint.setStrokeWidth(mStrokeWidth);
@@ -144,12 +149,30 @@ public class CircleProgressView extends View {
     }
 
     public void setProgress(int progress){
+
         mSweepAngle = 0;
-        mProgress = progress;
+        this.mProgress = progress;
         initProgressAngle();
         initSweepAngle();
         invalidate();
     }
 
 
+    public void setFocusChanges() {
+        final int tempProgress  = mProgress;
+        setFocusableInTouchMode(true);
+        setFocusable(true);
+        requestFocusFromTouch();
+        requestFocus();
+        setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    setProgress(tempProgress);
+                }else {
+                    setProgress(0);
+                }
+            }
+        });
+    }
 }

@@ -22,4 +22,7 @@
         <attr name="progress" format="integer"/>
         <attr name="strokeWidth" format="integer"/>
     </declare-styleable>
+    <declare-styleable name="CountDownView">
+        <attr name="img_resource" format="reference"/>
+    </declare-styleable>
 </resources>

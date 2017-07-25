@@ -47,6 +47,7 @@ public class DateUtil {
         return 0;
     }
 
+    //获取最近的计划position
     public static int getCurrentPlanPosition(List<RecyclerPlans> plans,String type){
         int position = 0;
         long todayTime = getLongFromStringDate(getToday(type),type);
@@ -71,4 +72,35 @@ public class DateUtil {
         return position;
     }
 
+
+    public static String getTime(Long ms) {
+        Integer ss = 1000;
+        Integer mi = ss * 60;
+        Integer hh = mi * 60;
+        //时
+        Long hour = ms / hh;
+        String h = "";
+        if (hour > 0 && hour < 10){
+            h = "0" + hour + ":";
+        }else if (hour > 10){
+            h = hour + ":";
+        }
+        //分
+        Long minute = (ms  - hour * hh) / mi;
+        String m = "00:";
+        if (minute > 0 && minute < 10){
+            m = "0" + minute+":";
+        }else if (minute > 10){
+            m = minute + ":";
+        }
+        //秒
+        Long second = (ms - hour * hh - minute * mi) / ss;
+        String s = "00";
+        if (second > 0 && second < 10){
+            s = "0" + second;
+        }else if (second > 10){
+            s = second + "";
+        }
+        return h+m+s;
+    }
 }
