@@ -25,5 +25,7 @@
     <string name="Snakcar_cancel_plan">取消这个计划</string>
     <string name="no">否</string>
     <string name="yes">是</string>
+    <string name="cancel">取消</string>
+    <string name="keep_time">倒计时</string>
 
 </resources>

@@ -22,7 +22,8 @@
         <attr name="progress" format="integer"/>
         <attr name="strokeWidth" format="integer"/>
     </declare-styleable>
-    <declare-styleable name="CountDownView">
-        <attr name="img_resource" format="reference"/>
+    <declare-styleable name="TimeKeeperView">
+        <attr name="img_waiting_resource" format="reference"/>
+        <attr name="img_finish_resource" format="reference"/>
     </declare-styleable>
 </resources>

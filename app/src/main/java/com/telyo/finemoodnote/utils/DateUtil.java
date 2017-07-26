@@ -84,21 +84,23 @@ public class DateUtil {
             h = "0" + hour + ":";
         }else if (hour > 10){
             h = hour + ":";
+        }else if (hour ==0){
+            h = "";
         }
         //分
         Long minute = (ms  - hour * hh) / mi;
         String m = "00:";
-        if (minute > 0 && minute < 10){
+        if (minute >= 0 && minute < 10){
             m = "0" + minute+":";
-        }else if (minute > 10){
+        }else {
             m = minute + ":";
         }
         //秒
         Long second = (ms - hour * hh - minute * mi) / ss;
         String s = "00";
-        if (second > 0 && second < 10){
+        if (second >= 0 && second < 10){
             s = "0" + second;
-        }else if (second > 10){
+        }else {
             s = second + "";
         }
         return h+m+s;
