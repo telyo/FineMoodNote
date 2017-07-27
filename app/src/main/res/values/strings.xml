@@ -27,5 +27,8 @@
     <string name="yes">是</string>
     <string name="cancel">取消</string>
     <string name="keep_time">倒计时</string>
+    <string name="hour">时</string>
+    <string name="min">分</string>
+    <string name="second">秒</string>
 
 </resources>

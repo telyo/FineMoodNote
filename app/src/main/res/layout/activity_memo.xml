@@ -2,178 +2,240 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
-    </android.support.v7.widget.Toolbar>
+        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rv_keep_time"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
-            android:drawableLeft="@drawable/clock"
-            android:drawablePadding="5dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/keep_time"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="35dp"
+            android:drawableLeft="@drawable/clock"
+            android:drawablePadding="5dp"
+            android:text="@string/keep_time" />
 
         <com.telyo.finemoodnote.views.TimeKeeperView
-            android:layout_centerHorizontal="true"
             android:id="@+id/timekeeper"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            />
+            android:layout_centerHorizontal="true" />
 
         <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_below="@+id/timekeeper"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/timekeeper"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_marginTop="35dp"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:text="触发时间："
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:gravity="right"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
+                    android:text="触发时间：" />
+
                 <TextView
-                    android:layout_marginLeft="20dp"
                     android:id="@+id/tv_time"
-                    android:text="pm 19:00"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="pm 19:00" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_things"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:text="当前事件："
-                    android:gravity="right"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="right"
+                    android:text="当前事件：" />
+
                 <TextView
 
-                    android:layout_marginLeft="20dp"
                     android:id="@+id/tv_memo"
-                    android:text="遛狗"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="频次："
-                    android:gravity="right"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
-                <TextView
                     android:layout_marginLeft="20dp"
-                    android:id="@+id/tv_type"
-                    android:text="每天"
-                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:text="遛狗" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="right"
+                    android:text="频次：" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="每天" />
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <Button
-                    android:textColor="@color/white"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/click_btn_bg_primary"
-                    android:text="取消当前事件"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"/>
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/click_btn_bg_primary"
+                    android:text="取消当前事件"
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
         </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
-        android:padding="35dp"
         android:id="@+id/ll_btn"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="35dp">
 
         <EditText
-            android:hint="事件命名"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"/>
-       
-        <RelativeLayout
-            android:layout_marginTop="35dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:hint="事件命名" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="35dp"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Button
-                    android:background="@drawable/click_btn_bg_accent"
-                    android:textColor="@color/white"
-                    android:text="@string/cancel"
-                    android:id="@+id/btn_cancel"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <Button
-                    android:background="@drawable/click_btn_bg_accent"
-                    android:textColor="@color/white"
-                    android:text="@string/confirm"
-                    android:id="@+id/btn_confirm"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hour"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/hour"
+                    android:textColor="@color/colorAccent" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_min"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/min"
+                    android:textColor="@color/colorAccent" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_second"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/second"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
-        </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/click_btn_bg_accent"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/click_btn_bg_accent"
+                    android:text="@string/confirm"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
