@@ -6,7 +6,7 @@
 
 在这个项目里，根据需求自定义了一些View，下面这个是一个自定义圆形进度条、先上一波图：
 
-![](http://thumbnail0.baidupcs.com/thumbnail/cc61fcd2cd70dabe2555e60da471bc60?fid=3642803577-250528-988859843206720&time=1502686800&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VM9yBiDm+ClRaQe55xr4PxBSTIM=&expires=8h&chkbd=0&chkv=0&dp-logid=5231894317155683976&dp-callid=0&size=c1920_u1080&quality=90&vuk=3642803577&ft=image)
+![](https://raw.githubusercontent.com/telyo/FineMoodNote/master/GIF.gif)
 
 效果分析：
 
@@ -179,7 +179,7 @@ progressView.setFocusChanges();
 
 还是先看看效果图：
 
-![](http://thumbnail0.baidupcs.com/thumbnail/3081ed966a1710d9d8ff3460215daa2c?fid=3642803577-250528-786293330064965&time=1502690400&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VO4W0Fg7WoKHf2dRVT7QI9cPhEo=&expires=8h&chkbd=0&chkv=0&dp-logid=5232729442385513167&dp-callid=0&size=c1920_u1080&quality=90&vuk=3642803577&ft=image)
+![](https://raw.githubusercontent.com/telyo/FineMoodNote/master/time.gif)
 
 ### 一、功能分析
 
