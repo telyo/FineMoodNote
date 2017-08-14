@@ -8,11 +8,12 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
-        android:layout_height="?attr/actionBarSize" />
+        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light" />
 
     <DatePicker
         android:id="@+id/date_picker"
@@ -20,10 +21,10 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:layout_marginTop="5dp"
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:background="@drawable/click_btn_bg_accent"
         android:text="@string/confirm"
         android:textColor="@color/white" />

@@ -38,29 +38,40 @@ import static com.telyo.finemoodnote.utils.Constants.pi;
  */
 
 public class TimeKeeperView extends RelativeLayout {
+    //布局高度
     private int mHeight;
+    //时针大圆半径
     private int mLargeRadio;
+    //画时针小圆半径
     private int mSmallRadio;
     private Context mContext;
+    //倒计时进度
     private float mProgress;
-
+    //文字小时
     private String hour;
+    //文字分钟
     private String min;
+    //文字秒钟
     private String second;
 
+    //是否显示小时
     private static final int WITH_HOUR = 001;
-
     private static final int WITHOUT_HOUR = 000;
     private static int TIME_STATE = WITHOUT_HOUR;
+    //倒计时总时长
     private long mTotalTime;
+    //显示时间的文字
     private String mTimeText;
-
+    //计时的imageView
     private ImageView mWaitingImg;
+    //计时完成的ImageView
     private ImageView mFinishImg;
+    //需要用到的图片资源
     private int mImgWaitingRes;
     private int mImgFinishRes;
-    private int mImg_margin;
 
+    //水波纹效果
+    private int mImg_margin;
     private boolean isFinished = false;
     private int mRadius_1;
     private int mRadius_2;
@@ -91,7 +102,6 @@ public class TimeKeeperView extends RelativeLayout {
     }
 
     private void initWaitingImg() {
-
         L.d("initWaitingImg: " + isFinished);
         mWaitingImg = new ImageView(mContext);
         mWaitingImg.setImageResource(mImgWaitingRes);
@@ -133,8 +143,8 @@ public class TimeKeeperView extends RelativeLayout {
 
     private void initText() {
         hour = "00";
-        min = "00";
-        second = "03";
+        min = "0";
+        second = "10";
         mTimeText = min + ":" + second;
     }
 

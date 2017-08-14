@@ -72,6 +72,7 @@ public class CircleProgressView extends View {
     private void initAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
         mProgress = ta.getInt(R.styleable.CircleProgressView_progress,0);
+        //环的宽度
         mStrokeWidth  = ta.getInt(R.styleable.CircleProgressView_strokeWidth,35);
         ta.recycle();
     }

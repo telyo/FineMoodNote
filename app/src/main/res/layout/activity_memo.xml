@@ -7,19 +7,120 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="35dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:hint="事件命名" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hour"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/hour"
+                    android:textColor="@color/colorAccent" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_min"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/min"
+                    android:textColor="@color/colorAccent" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_second"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/second"
+                    android:textColor="@color/colorAccent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/click_btn_bg_accent"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/click_btn_bg_accent"
+                    android:text="@string/confirm"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rv_keep_time"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -138,105 +239,5 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_btn"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="35dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:hint="事件命名" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="35dp"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_hour"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/hour"
-                    android:textColor="@color/colorAccent" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_min"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/min"
-                    android:textColor="@color/colorAccent" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_second"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/second"
-                    android:textColor="@color/colorAccent" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/click_btn_bg_accent"
-                    android:text="@string/cancel"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btn_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/click_btn_bg_accent"
-                    android:text="@string/confirm"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>
