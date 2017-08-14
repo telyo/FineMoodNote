@@ -175,7 +175,7 @@ progressView.setFocusChanges();
 
 ## 二、TimeKeeperView
 
-备忘录需要一个计时器，勉强谢了一个计时器的View
+备忘录需要一个计时器，勉强写了一个计时器的View
 
 还是先看看效果图：
 
